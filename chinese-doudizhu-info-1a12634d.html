@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>斗地主 · 规则查询 & 牌型参考</title>
+  <style>
+    /* reset & base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f2f4f8;
+      color: #212529;
+      line-height: 1.6;
+    }
+    a { color: #c44536; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color 0.2s; }
+    a:hover { color: #0b3b5c; }
+
+    /* dark hero - 深色头图 */
+    .hero {
+      background: linear-gradient(135deg, #1a2a3a 0%, #0f1c28 100%);
+      color: #ecedee;
+      padding: 3rem 1.5rem 2.8rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .hero .sub {
+      font-size: 1.05rem;
+      color: #aabacf;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* main content area - 浅色正文区 */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.2rem 1.2rem 3rem;
+    }
+
+    /* 信息卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (min-width: 680px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (min-width: 960px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.5rem 1.3rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.06);
+      transition: box-shadow 0.2s;
+      border: 1px solid #e9edf2;
+    }
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #1e2c3a;
+      border-left: 4px solid #c44536;
+      padding-left: 0.6rem;
+    }
+    .card p, .card ul {
+      font-size: 0.95rem;
+      color: #2e3b4b;
+    }
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .card li {
+      padding: 0.2rem 0;
+      position: relative;
+      padding-left: 1.3rem;
+    }
+    .card li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #c44536;
+    }
+
+    /* 自然链接段落 (适合人群 / 延伸阅读) */
+    .link-paragraph {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.6rem 1.5rem;
+      margin-bottom: 1.8rem;
+      border: 1px solid #e9edf2;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .link-paragraph p {
+      margin-bottom: 0.6rem;
+      font-size: 0.98rem;
+    }
+    .link-paragraph p:last-child { margin-bottom: 0; }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+      color: #1e2c3a;
+      border-bottom: 2px solid #dce2ea;
+      padding-bottom: 0.25rem;
+    }
+
+    /* FAQ 摘要 (简洁) */
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      margin-top: 1rem;
+      border: 1px solid #e9edf2;
+    }
+    .faq-mini details {
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+    .faq-mini summary {
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0.25rem 0;
+      color: #1e2c3a;
+    }
+    .faq-mini summary::-webkit-details-marker { color: #c44536; }
+    .faq-mini details p {
+      margin: 0.4rem 0 0.2rem 1rem;
+      color: #3a4a5c;
+    }
+
+    .footer-note {
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      text-align: center;
+      color: #6a7a8c;
+      border-top: 1px solid #dce2ea;
+      padding-top: 1.8rem;
+    }
+
+    /* responsive detail */
+    @media (max-width: 500px) {
+      .hero h1 { font-size: 1.7rem; }
+      .card { padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>斗地主·牌型手册与规则索引</h1>
+  <p class="sub">快速查阅牌型定义、出牌顺序、计分原则，以及常见变体规则对照。</p>
+</header>
+
+<main class="container">
+
+  <!-- 主视觉：用途卡片 -->
+  <div class="card-grid">
+    <div class="card">
+      <h3>日常查询</h3>
+      <p>无论线下牌局还是线上对局，遇到牌型争议或忘记出牌顺序，可即时核对标准规则。涵盖火箭、炸弹、顺子、连对、飞机等全部牌型定义及大小比较逻辑。</p>
+    </div>
+    <div class="card">
+      <h3>对照与裁定</h3>
+      <p>不同地区对“癞子局”“三带二是否必须带对”存在差异。本页整理主流规则基线，辅助裁判或玩家快速达成共识，减少争执。</p>
+    </div>
+    <div class="card">
+      <h3>延伸阅读</h3>
+      <p>从经典 54 张到更复杂的四人斗地主、不洗牌模式，理解底层概率与叫分策略。适合希望从“会玩”走向“理解逻辑”的玩家。</p>
+    </div>
+  </div>
+
+  <!-- 适合人群 + 自然链接段落 -->
+  <h2 class="section-title">适合谁查阅</h2>
+  <div class="link-paragraph">
+    <p><strong>新手</strong> — 刚接触扑克牌游戏，需要完整的牌型图解和出牌顺序说明。通过检索 <a href="https://chinese-doudizhu.com">斗地主</a> 规则章节，能快速建立正确认知，避免因误解规则影响游戏体验。</p>
+    <p><strong>常玩家</strong> — 已熟悉基本玩法，但偶尔遇到“飞机带翅膀是否允许拆对”或“炸弹倍率叠加”等细节。可直接定位专项说明，节省争论时间。</p>
+    <p><strong>组织者 / 裁判</strong> — 在朋友聚会或小型比赛中统一规则尺度，本页提供的基线版本可作为参考协定，减少临场解释成本。</p>
+  </div>
+
+  <!-- 场景提示 + 第二个自然链接段落（嵌入在说明里） -->
+  <h2 class="section-title">典型使用场景</h2>
+  <div class="card-grid" style="margin-bottom:0;">
+    <div class="card">
+      <h3>牌局中间查询</h3>
+      <p>手机打开页面，快速定位“三带一”与“三带二”的适用条件，或确认“连对是否包含 2 和大小王”。所有牌型定义均在 <a href="https://chinese-doudizhu.com">斗地主</a> 牌型表中列出。</p>
+    </div>
+    <div class="card">
+      <h3>规则对照</h3>
+      <p>遇到“软炸弹”或“春天/反春天”计分标准模糊时，可参考页内计分与倍数说明。不同版本差异以注释形式呈现，便于客观对比。</p>
+    </div>
+    <div class="card">
+      <h3>自学 & 备课</h3>
+      <p>教学场景下，讲师可引用页面牌型逻辑作为讲义素材。页面结构清晰，适合配合实战演示展开讲解。</p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要（简洁） -->
+  <h2 class="section-title" style="margin-top:2.2rem;">常见疑问简答</h2>
+  <div class="faq-mini">
+    <details>
+      <summary>火箭和炸弹谁更大？</summary>
+      <p>火箭（王炸）是最大牌型，大于任何炸弹。炸弹之间按点数比较。</p>
+    </details>
+    <details>
+      <summary>顺子可以包括 2 吗？</summary>
+      <p>标准规则中顺子不包括 2 和大小王。A 可作为 1 使用（A-K-Q-J-10-9-8…），但 2 不能出现在顺子里。</p>
+    </details>
+    <details>
+      <summary>飞机带翅膀的“翅膀”必须是对子吗？</summary>
+      <p>常见版本要求翅膀为对子（飞机+对子），但某些变体允许带单张或混带。本页基础篇以“带对子”作为标准解，变体规则在进阶中注明。</p>
+    </details>
+    <details>
+      <summary>积分倍数如何计算？</summary>
+      <p>基础倍率 × 炸弹个数（每出一个炸弹翻倍） × 春天/反春天倍数。具体调用积分表可查看 <a href="https://chinese-doudizhu.com">斗地主</a> 计分页。</p>
+    </details>
+  </div>
+
+  <div class="footer-note">
+    内容依据大众通用规则整理，部分变体以注释区分。如需更详细资料，可直接查阅 <a href="https://chinese-doudizhu.com">斗地主</a> 完整参考页面。
+  </div>
+</main>
+
+</body>
+</html>
